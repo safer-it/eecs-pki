@@ -4,22 +4,12 @@
   become: true
   gather_facts: yes
   tasks: 
-   - name: jdk install
+   - name: "{{ item }} install"
      apt:
-       name: default-jdk-headless
+       name: "{{ item }}" 
        state: present
-       
-   - name: ant install
-     apt:
-       name: ant 
-       state: present
-
-   - name: ant-optional install
-     apt:
-       name: ant-optional
-       state: present
-       
-   - name: unzip install
-     apt:
-       name: unzip
-       state: present
+     with_items: 
+       - default-jdk-headless
+       - ant
+       - ant-optional
+       - unzip
