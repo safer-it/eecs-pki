@@ -29,7 +29,7 @@
        
    - name: download wildfly
      get_url:
-       url: http://example.com/path/file.conf
+       url: https://github.com/wildfly/wildfly/releases/download/30.0.0.Final/wildfly-30.0.0.Final.zip
        dest: /opt/pki
        
        
