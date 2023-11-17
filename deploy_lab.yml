@@ -24,9 +24,14 @@
        state: restarted
    
    - name: init database
-     command:
-       cmd: mysql -e "CREATE DATABASE ejbca CHARACTER SET utf8 COLLATE utf8_general_ci; grant all privileges on ejbca.* to 'ejbca'@'localhost' identified by 'lemotdepasse'; flush privileges;"
-       
+     community.mysql.mysql_db:
+       name: ejbca
+       collation: utf8_general_ci
+       encoding: utf8
+   #  command:
+   #    cmd: mysql -e "CREATE DATABASE ejbca CHARACTER SET utf8 COLLATE utf8_general_ci; grant all privileges on ejbca.* to 'ejbca'@'localhost' identified by 'lemotdepasse'; flush privileges;"
+   
+   
    - name: download wildfly
      get_url:
        url: https://github.com/wildfly/wildfly/releases/download/30.0.0.Final/wildfly-30.0.0.Final.zip
