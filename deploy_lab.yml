@@ -1,5 +1,5 @@
 ---
-- name: deploy pki
+- name: deploy pki 2
   hosts: pki
   become: true
   gather_facts: yes
