@@ -3,9 +3,11 @@
   hosts: pki
   become: true
   gather_facts: yes
-  ansible.builtin.apt:
-    name: default-jdk-headless
-    state: latest
-    install_recommends: no
+  tasks: 
+   - name: jdk install
+     apt:
+       name: default-jdk-headless
+       state: present
+
 
 
