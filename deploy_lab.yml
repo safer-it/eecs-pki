@@ -6,8 +6,12 @@
   tasks: 
    - name: install packages
      apt:
-       name: ['default-jdk-headless', 'ant', 'ant-optional', 'unzip','mariadb-server'] 
+       name: ['default-jdk-headless', 'ant', 'ant-optional', 'unzip','mariadb-server','postfix','s-nail'] 
        state: present
+       
+   - name: create pki user
+     user:
+       name: pki
 
    - name: copy mysql utf8 config
      copy:
@@ -22,3 +26,10 @@
    - name: init database
      command:
        cmd: mysql -e "CREATE DATABASE ejbca CHARACTER SET utf8 COLLATE utf8_general_ci; grant all privileges on ejbca.* to 'ejbca'@'localhost' identified by 'lemotdepasse'; flush privileges;"
+       
+   - name: download wildfly
+     get_url:
+       url: https://github.com/wildfly/wildfly/releases/download/30.0.0.Final/wildfly-30.0.0.Final.zip
+       dest: /opt/pki
+       
+       
