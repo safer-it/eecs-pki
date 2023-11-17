@@ -27,9 +27,9 @@
      command:
        cmd: mysql -e "CREATE DATABASE ejbca CHARACTER SET utf8 COLLATE utf8_general_ci; grant all privileges on ejbca.* to 'ejbca'@'localhost' identified by 'lemotdepasse'; flush privileges;"
        
-   - name: copy wildfly
-     copy:
-       src: wildfly/wildfly-30.0.0.Final/
-       dest: /opt/pki/wildfly
+   - name: download wildfly
+     get_url:
+       url: http://example.com/path/file.conf
+       dest: /opt/pki
        
        
