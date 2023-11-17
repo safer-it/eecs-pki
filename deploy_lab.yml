@@ -6,6 +6,6 @@
   tasks: 
    - name: install
      apt:
-       name: ['default-jdk-headless', 'ant', 'ant-optional', 'unzip'] 
+       name: ['default-jdk-headless', 'ant', 'ant-optional', 'unzip','mariadb-server'] 
        state: present
 
