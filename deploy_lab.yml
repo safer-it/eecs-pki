@@ -3,7 +3,11 @@
   hosts: pki
   become: true
   gather_facts: yes
-  package:
-    name: "default-jdk-headless"
-    state: present
+  tasks: 
+   - name: jdk install
+     apt:
+       name: default-jdk-headless
+       state: present
+
+
 
