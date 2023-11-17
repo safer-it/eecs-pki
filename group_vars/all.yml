@@ -1,0 +1,10 @@
+---
+
+#ansible common variables
+ansible_ssh_common_args: '-o StrictHostKeyChecking=no'
+ansible_ssh_user: fanch 
+ansible_become_pass: Eecs1*
+ansible_password: Eecs1*
+ansible_winrm_operation_timeout_sec: 60
+ansible_winrm_read_timeout_sec: 70
+

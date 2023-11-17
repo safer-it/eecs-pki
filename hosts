@@ -1,0 +1,2 @@
+[pki]
+ejbca.eecs.lab ansible_host=10.99.0.2
