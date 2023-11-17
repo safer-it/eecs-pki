@@ -10,7 +10,7 @@
        state: present
        
    - name: create pki user
-     user:
+     ansible.builtin.user:
        name: pki
 
    - name: copy mysql utf8 config
