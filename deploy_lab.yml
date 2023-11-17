@@ -9,9 +9,9 @@
        name: ['default-jdk-headless', 'ant', 'ant-optional', 'unzip','mariadb-server','postfix','s-nail'] 
        state: present
        
-   - name: create pki user
-     user:
-       name: pki
+ #  - name: create pki user
+ #    user:
+ #      name: pki
 
    - name: copy mysql utf8 config
      copy:
