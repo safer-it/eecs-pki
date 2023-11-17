@@ -4,7 +4,7 @@
   become: true
   gather_facts: yes
   tasks: 
-   - name: install
+   - name: install packages
      apt:
        name: ['default-jdk-headless', 'ant', 'ant-optional', 'unzip','mariadb-server'] 
        state: present
@@ -18,3 +18,7 @@
      service:
        name: mysql
        state: restarted
+   
+   - name: init database
+     command:
+       cmd: mysql -e "CREATE DATABASE ejbca CHARACTER SET utf8 COLLATE utf8_general_ci; grant all privileges on ejbca.* to 'ejbca'@'localhost' identified by 'lemotdepasse'; flush privileges;"
