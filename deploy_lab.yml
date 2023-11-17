@@ -9,3 +9,7 @@
        name: ['default-jdk-headless', 'ant', 'ant-optional', 'unzip','mariadb-server'] 
        state: present
 
+   - name: The same example as above, but using a symbolic mode equivalent to 0644
+     copy:
+       src: mysql/utf-8.conf
+       dest: /etc/mysql/conf.d/utf-8.conf
