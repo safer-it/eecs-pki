@@ -1,25 +1,44 @@
 ---
-- name: deploy pki 2
+- name: deploy pki
   hosts: pki
   become: true
   gather_facts: yes
   tasks: 
-   - name: jdk install
+   - name: install packages
      apt:
-       name: default-jdk-headless
+       name: ['default-jdk-headless', 'ant', 'ant-optional', 'unzip','mariadb-server','postfix','s-nail','python3-pymysql'] 
        state: present
        
-   - name: ant install
-     apt:
-       name: ant 
-       state: present
+   - name: create pki user
+     user:
+       name: pki
 
-   - name: ant-optional install
-     apt:
-       name: ant-optional
-       state: present
+   - name: copy mysql utf8 config
+     copy:
+       src: mysql/utf-8.conf
+       dest: /etc/mysql/conf.d/utf-8.conf
        
-   - name: unzip install
-     apt:
-       name: unzip
-       state: present
+   - name: restart mysql service
+     service:
+       name: mysql
+       state: restarted
+       
+   - name: set database local access
+     command:
+       cmd: mysql -e "ALTER USER 'root'@'localhost' IDENTIFIED BY '{{mysql_password}}';"
+   
+   - name: init database
+     community.mysql.mysql_db:
+       name: ejbca
+       collation: utf8_general_ci
+       encoding: utf8
+   #  command:
+   #    cmd: mysql -e "CREATE DATABASE ejbca CHARACTER SET utf8 COLLATE utf8_general_ci; grant all privileges on ejbca.* to 'ejbca'@'localhost' identified by 'lemotdepasse'; flush privileges;"
+   
+   
+   - name: download wildfly
+     get_url:
+       url: https://github.com/wildfly/wildfly/releases/download/30.0.0.Final/wildfly-30.0.0.Final.zip
+       dest: /opt/pki
+       
+       
