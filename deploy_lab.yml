@@ -6,7 +6,7 @@
   tasks: 
    - name: install packages
      apt:
-       name: ['default-jdk-headless', 'ant', 'ant-optional', 'unzip','mariadb-server','postfix','s-nail','PyMySQL'] 
+       name: ['default-jdk-headless', 'ant', 'ant-optional', 'unzip','mariadb-server','postfix','s-nail','python3-pymysql'] 
        state: present
        
    - name: create pki user
@@ -22,6 +22,10 @@
      service:
        name: mysql
        state: restarted
+       
+   - name: set database local access
+     command:
+       cmd: mysql -e "ALTER USER 'root'@'localhost' IDENTIFIED BY '{{mysql_password}}';"
    
    - name: init database
      community.mysql.mysql_db:
