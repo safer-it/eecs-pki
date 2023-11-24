@@ -6,6 +6,7 @@ ansible_ssh_user: fanch
 ansible_become_pass: Eecs1*
 ansible_password: Eecs1*
 mysql_password: Eecs1*
+mysql_user: root
 ansible_winrm_operation_timeout_sec: 60
 ansible_winrm_read_timeout_sec: 70
 host_key_checking: False

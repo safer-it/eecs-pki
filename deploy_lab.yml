@@ -25,13 +25,15 @@
        
    - name: set database local access
      command:
-       cmd: mysql -e "ALTER USER 'root'@'localhost' IDENTIFIED BY '{{mysql_password}}';"
+       cmd: mysql --password='{{mysql_password}}' --user=root -e "ALTER USER 'root'@'localhost' IDENTIFIED BY '{{mysql_password}}';"
    
    - name: init database
      community.mysql.mysql_db:
        name: ejbca
        collation: utf8_general_ci
        encoding: utf8
+       login_user: '{{mysql_user}}'
+       login_password: '{{mysql_password}}'
    #  command:
    #    cmd: mysql -e "CREATE DATABASE ejbca CHARACTER SET utf8 COLLATE utf8_general_ci; grant all privileges on ejbca.* to 'ejbca'@'localhost' identified by 'lemotdepasse'; flush privileges;"
    
