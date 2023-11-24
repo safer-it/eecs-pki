@@ -1,17 +1,17 @@
 ---
-- name: deploy pki 2
+- name: deploy pki
   hosts: pki
   become: true
   gather_facts: yes
   tasks: 
    - name: install packages
      apt:
-       name: ['default-jdk-headless', 'ant', 'ant-optional', 'unzip','mariadb-server','postfix','s-nail'] 
+       name: ['default-jdk-headless', 'ant', 'ant-optional', 'unzip','mariadb-server','postfix','s-nail','PyMySQL'] 
        state: present
        
- #  - name: create pki user
- #    user:
- #      name: pki
+   - name: create pki user
+     user:
+       name: pki
 
    - name: copy mysql utf8 config
      copy:
